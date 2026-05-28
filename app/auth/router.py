@@ -36,5 +36,5 @@ def user_login(user: schemas.LoginCreate, db: Session = Depends(get_db)):
     if not password_verification:
         raise HTTPException(status_code=401, detail="Email ou senha incorreta")
 
-    token = create_token({"sub": login_verification.id})
+    token = create_token({"sub": str(login_verification.id)})
     return {"access_token": token, "token_type": "bearer"}

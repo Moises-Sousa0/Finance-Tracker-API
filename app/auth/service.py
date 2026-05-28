@@ -16,13 +16,13 @@ ALGORITHM = os.getenv("ALGORITHM")
 def hash_password(password: str):
     return pwd_context.hash(password)
     
-def criar_token(dados: dict):
+def create_token(dados: dict):
     payload = dados.copy()
     expiracao = datetime.now(timezone.utc) + timedelta(minutes=30)
     payload.update({"exp": expiracao})
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
-def verificar_token(token):
+def verify_token(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id = payload.get("sub")
@@ -32,3 +32,6 @@ def verificar_token(token):
         raise HTTPException(status_code=401, detail="Token invalido ou inexistente")
 
     return user_id
+
+def verify_password(plain_password: str, hashed_password: str): 
+    return pwd_context.verify(plain_password, hashed_password)
