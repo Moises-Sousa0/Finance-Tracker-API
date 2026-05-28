@@ -32,7 +32,7 @@ def user_login(user: schemas.LoginCreate, db: Session = Depends(get_db)):
     if  login_verification is None:
         raise HTTPException(status_code=401, detail="Email ou senha incorreta")
     
-    password_verification = verify_password(user.password, login_verification.hash_password)
+    password_verification = verify_password(user.password, login_verification.password)
     if not password_verification:
         raise HTTPException(status_code=401, detail="Email ou senha incorreta")
 
