@@ -1,65 +1,76 @@
-#  Finance Tracker API
+# Finance Tracker API
 
-API REST para controle financeiro pessoal, construída com FastAPI.  
-O projeto foca em consolidar conhecimentos em backend, modelagem de dados e autenticação, simulando um sistema real de gestão de gastos.
+API REST para controle financeiro pessoal desenvolvida com FastAPI.
 
+O projeto tem foco em prática de backend, autenticação JWT, modelagem de banco de dados e arquitetura de APIs REST.
 
+## Status
 
+🚧 Em desenvolvimento
 
-##  Status do projeto
+# Já implementado
 
-🚧 Em desenvolvimento  
-Atualmente implementado:
-- Modelagem do banco de dados
-- SQLAlchemy models
-- Migrations com Alembic
+* Estrutura organizada por domínio
+* Configuração do PostgreSQL com SQLAlchemy
+* Models relacionais (`User`, `Category`, `Transaction`)
+* Migrations com Alembic
+* Sistema de autenticação JWT
+* Cadastro e login de usuários
+* Hash de senha com bcrypt
+* Rotas protegidas com `get_current_user`
 
+---
 
-##  Objetivo
+# Funcionalidades planejadas
 
-Criar uma API onde o usuário pode:
-- Se cadastrar e autenticar
-- Gerenciar suas transações financeiras (receitas e despesas)
-- Organizar gastos por categorias
-- Consultar histórico e saldo
+* CRUD de categorias
+* CRUD de transações
+* Filtros por categoria, período e tipo
+* Resumo financeiro mensal
+* Docker e Docker Compose
+* Testes automatizados
 
-O foco principal não é UI, mas sim backend, arquitetura e boas práticas.
+---
 
+# Stack
 
+* Python
+* FastAPI
+* PostgreSQL
+* SQLAlchemy
+* Alembic
+* Pydantic
+* python-jose
+* passlib + bcrypt
+* Docker *(planejado)*
 
-##  Funcionalidades planejadas
-
-- Cadastro e login com JWT (access + refresh token)
-- CRUD de transações (criar, listar, editar, deletar)
-- Filtros por:
-  - categoria
-  - período (mês/ano)
-  - tipo (receita/despesa)
-- Resumo financeiro mensal (entradas, saídas e saldo)
-- Isolamento de dados por usuário
-
-
-
-##  Stack utilizada
-
-- **FastAPI** — framework principal da API
-- **Uvicorn** — servidor ASGI
-- **PostgreSQL** — banco de dados relacional
-- **SQLAlchemy** — ORM
-- **Alembic** — migrations
-- **python-jose** — autenticação JWT
-- **passlib (bcrypt)** — hash de senhas
-- **Docker & Docker Compose** — ambiente isolado e reproduzível
+---
 
 
 
-##  O que este projeto explora
 
-- Autenticação JWT na prática (tokens, expiração, validação)
-- Modelagem relacional com SQLAlchemy
-- Relacionamentos entre entidades (User → Transactions → Categories)
-- Migrations versionadas com Alembic
-- Isolamento de dados por usuário
-- Estrutura de API REST bem definida
-- Ambiente replicável com Docker
+ # Rodando o projeto
 
+```bash id="h4gh7r"
+# instalar dependências
+pip install -r requirements.txt
+
+# aplicar migrations
+alembic upgrade head
+
+# iniciar API
+uvicorn app.main:app --reload
+```
+
+---
+
+# Objetivo do projeto
+
+Este projeto está sendo desenvolvido para aprofundar conhecimentos em:
+
+* APIs REST
+* Arquitetura backend
+* SQLAlchemy
+* Autenticação JWT
+* Modelagem relacional
+* Boas práticas com FastAPI
