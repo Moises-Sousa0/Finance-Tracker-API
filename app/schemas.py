@@ -10,7 +10,8 @@ class UserResponse(BaseModel):
     name: str
     email: str
     class Config:
-        from_attributes = True
+        from_attributes = True #permite ler dados diretamente de objetos/classes, como modelos do sqlaclheemy
+
 
 
 class LoginCreate(BaseModel):
@@ -20,3 +21,19 @@ class LoginCreate(BaseModel):
 class LoginResponse(BaseModel):
     access_token: str
     token_type: str 
+
+
+
+class CategoryCreate(BaseModel):
+    name: str
+
+class CategoryResponse(BaseModel):
+    id: int
+    name: str
+    id_user: int
+    class Config:
+        from_attributes = True
+
+class CategoryUpdate(BaseModel):
+    name: str | None = None
+
