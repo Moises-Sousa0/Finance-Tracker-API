@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Date, Numeric, Enum, ForeignKey
 from app.database import Base
-from datetime import datetime
+from datetime import datetime, date
 
 
 
@@ -30,7 +30,7 @@ class Transaction(Base):
     id = Column(Integer, primary_key=True)
     type = Column(Enum("income", "expense" , name="transaction_type"), nullable=False)
     value = Column(Numeric, nullable=False)
-    data = Column(Date, default=datetime.now)
+    date_transaction = Column(Date, default=date.today)
     id_user = Column(Integer, ForeignKey("users.id"))
-    id_category = Column(Integer, ForeignKey("categories.id"))
+    id_category = Column(Integer, ForeignKey("categories.id", ondelete="RESTRICT"))
     created_at = Column(DateTime, default=datetime.now)
