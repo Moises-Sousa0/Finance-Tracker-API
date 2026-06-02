@@ -12,3 +12,10 @@ def create_category(name: schemas.CategoryCreate, current_user = Depends(get_cur
     result = service.create_category(db, current_user.id, name.name)
     
     return result
+
+
+@router.get("/categories", status_code=200, response_model=schemas.CategoryResponse)
+def view_categories(current_user = Depends(get_current_user),  db: Session = Depends(get_db)):
+    result = service.get_category(db, current_user.id)
+
+    return result
