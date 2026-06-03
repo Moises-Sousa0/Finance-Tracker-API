@@ -36,3 +36,10 @@ def update_category(id: int, category_data: schemas.CategoryUpdate, db: Session 
     result =  service.update_category(db, current_user.id, id, category_data.name)
 
     return result
+
+#deletar categoria
+@router.delete("/categories/{id}", status_code=204)
+def delete_category(id: int, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    service.delete_category(db, current_user.id, id)
+
+    
