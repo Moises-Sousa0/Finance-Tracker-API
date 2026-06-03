@@ -21,3 +21,9 @@ def get_categories(db: Session = Depends(get_db), current_user = Depends(get_cur
     result = service.get_categories(db, current_user.id)
 
     return result
+
+@router.get("/categories/{id}", status_code=200, response_model=schemas.CategoryResponse)
+def get_category(id: int, db: Session = Depends(get_db), current_user = Depends(get_current_user) ):
+    result = service.get_category(db, current_user.id, id)
+
+    return result
