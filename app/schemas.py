@@ -1,4 +1,6 @@
 from pydantic import BaseModel, Field
+from datetime import date
+from typing import Optional
 
 class UserCreate(BaseModel):
     name: str
@@ -37,3 +39,22 @@ class CategoryResponse(BaseModel):
 class CategoryUpdate(BaseModel):
     name: str | None = None
 
+
+
+class TransactionCreate(BaseModel):
+    type: str
+    value: int
+    date_transaction: date
+    name: str
+    id_category: int
+
+class TransactionResponse(BaseModel):
+    id: int
+    type: str
+    valte: int
+    date_transaction: date
+    name: str
+    id_category: int
+    id_user: int
+    class Config:
+        from_attributes = True #permite ler dados diretamente de objetos/classes, como modelos do sqlaclheemy
